@@ -1,13 +1,17 @@
 <h1><%= @cocktail.name.upcase %></h1>
 
 <div>
-  <ol>
+  <ul>
     <%@cocktail.doses.each do |d|  %>
      <li class='list'> <%= d.description %> <%= d.ingredient.name %></li>
+       <%= link_to 'Add ingredient to cocktail', new_cocktail_dose_path(@cocktail) %>
+       <%= link_to 'Remove ingredient from cocktail', cocktail_dose_path(@cocktail, d),
+        method: :delete,
+        data: { confirm: "Are you sure?" }  %>
     <% end %>
-  </ol>
+  </ul>
 </div>
 
 <div class=''>
- <%= link_to 'Add ingredient to cocktail', new_cocktail_dose_path(@cocktail) %>
+ <%= link_to 'Return to Cocktail list', cocktails_path %>
 </div>
